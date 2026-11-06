@@ -1,0 +1,44 @@
+{
+  "Monday": {
+    "breakfast": { "items": ["Idli", "Sambar", "Coconut Chutney", "Banana", "Tea/Coffee"], "time": "7:30 AM - 9:00 AM" },
+    "lunch": { "items": ["Rice", "Dal Tadka", "Aloo Gobi", "Roti", "Salad", "Papad"], "time": "12:00 PM - 1:30 PM" },
+    "snacks": { "items": ["Samosa", "Tea/Coffee"], "time": "4:30 PM - 5:30 PM" },
+    "dinner": { "items": ["Rice", "Rajma Masala", "Mixed Veg", "Roti", "Gulab Jamun"], "time": "7:30 PM - 9:00 PM" }
+  },
+  "Tuesday": {
+    "breakfast": { "items": ["Poha", "Boiled Egg", "Bread & Butter", "Milk", "Tea/Coffee"], "time": "7:30 AM - 9:00 AM" },
+    "lunch": { "items": ["Rice", "Chana Dal", "Bhindi Fry", "Roti", "Curd", "Pickle"], "time": "12:00 PM - 1:30 PM" },
+    "snacks": { "items": ["Bread Pakora", "Tea/Coffee"], "time": "4:30 PM - 5:30 PM" },
+    "dinner": { "items": ["Rice", "Chicken Curry", "Paneer Butter Masala", "Roti", "Ice Cream"], "time": "7:30 PM - 9:00 PM" }
+  },
+  "Wednesday": {
+    "breakfast": { "items": ["Paratha", "Curd", "Pickle", "Banana", "Tea/Coffee"], "time": "7:30 AM - 9:00 AM" },
+    "lunch": { "items": ["Rice", "Moong Dal", "Cabbage Sabzi", "Roti", "Salad", "Papad"], "time": "12:00 PM - 1:30 PM" },
+    "snacks": { "items": ["Veg Cutlet", "Tea/Coffee"], "time": "4:30 PM - 5:30 PM" },
+    "dinner": { "items": ["Rice", "Chole Masala", "Jeera Aloo", "Roti", "Kheer"], "time": "7:30 PM - 9:00 PM" }
+  },
+  "Thursday": {
+    "breakfast": { "items": ["Upma", "Vada", "Chutney", "Boiled Egg", "Tea/Coffee"], "time": "7:30 AM - 9:00 AM" },
+    "lunch": { "items": ["Rice", "Arhar Dal", "Baingan Bharta", "Roti", "Raita", "Pickle"], "time": "12:00 PM - 1:30 PM" },
+    "snacks": { "items": ["Spring Roll", "Tea/Coffee"], "time": "4:30 PM - 5:30 PM" },
+    "dinner": { "items": ["Rice", "Fish Curry", "Paneer Do Pyaza", "Roti", "Sewaiyan"], "time": "7:30 PM - 9:00 PM" }
+  },
+  "Friday": {
+    "breakfast": { "items": ["Chole Bhature", "Onion Slices", "Lassi", "Tea/Coffee"], "time": "7:30 AM - 9:00 AM" },
+    "lunch": { "items": ["Rice", "Masoor Dal", "Shimla Mirch", "Roti", "Salad", "Papad"], "time": "12:00 PM - 1:30 PM" },
+    "snacks": { "items": ["Aloo Tikki", "Tea/Coffee"], "time": "4:30 PM - 5:30 PM" },
+    "dinner": { "items": ["Biryani", "Raita", "Egg Curry", "Paneer Tikka", "Gulab Jamun"], "time": "7:30 PM - 9:00 PM" }
+  },
+  "Saturday": {
+    "breakfast": { "items": ["Dosa", "Sambar", "Coconut Chutney", "Banana", "Tea/Coffee"], "time": "7:30 AM - 9:00 AM" },
+    "lunch": { "items": ["Rice", "Dal Fry", "Matar Paneer", "Roti", "Curd", "Pickle"], "time": "12:00 PM - 1:30 PM" },
+    "snacks": { "items": ["Pav Bhaji", "Tea/Coffee"], "time": "4:30 PM - 5:30 PM" },
+    "dinner": { "items": ["Rice", "Mutton Curry", "Shahi Paneer", "Roti", "Ice Cream"], "time": "7:30 PM - 9:00 PM" }
+  },
+  "Sunday": {
+    "breakfast": { "items": ["Aloo Paratha", "Curd", "Pickle", "Fruit Bowl", "Tea/Coffee"], "time": "8:00 AM - 9:30 AM" },
+    "lunch": { "items": ["Rice", "Dal Makhani", "Chicken Biryani", "Paneer Bhurji", "Raita", "Sweet"], "time": "12:00 PM - 1:30 PM" },
+    "snacks": { "items": ["Maggi", "Tea/Coffee"], "time": "4:30 PM - 5:30 PM" },
+    "dinner": { "items": ["Rice", "Kadhi Pakora", "Mix Veg", "Roti", "Rasmalai"], "time": "7:30 PM - 9:00 PM" }
+  }
+}

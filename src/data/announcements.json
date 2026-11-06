@@ -1,0 +1,18 @@
+[
+  {
+    "id": "ann-001",
+    "title": "Welcome to New Semester!",
+    "message": "Mess timings have been updated for the new semester. Please check the updated schedule.",
+    "priority": "high",
+    "createdAt": "2026-11-01T10:00:00.000Z",
+    "createdBy": "admin-001"
+  },
+  {
+    "id": "ann-002",
+    "title": "Special Menu on Diwali",
+    "message": "Special festive menu will be served on Diwali. Enjoy sweets and snacks!",
+    "priority": "normal",
+    "createdAt": "2026-10-28T08:00:00.000Z",
+    "createdBy": "admin-001"
+  }
+]

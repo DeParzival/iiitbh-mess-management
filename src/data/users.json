@@ -1,0 +1,38 @@
+[
+  {
+    "id": "admin-001",
+    "name": "Mess Admin",
+    "email": "admin@iiitbh.ac.in",
+    "password": "admin123",
+    "role": "admin",
+    "rollNo": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "stu-001",
+    "name": "Swaraj Sarkar",
+    "email": "swaraj@iiitbh.ac.in",
+    "password": "student123",
+    "role": "student",
+    "rollNo": "B123001",
+    "createdAt": "2026-08-01T00:00:00.000Z"
+  },
+  {
+    "id": "stu-002",
+    "name": "Rahul Kumar",
+    "email": "rahul@iiitbh.ac.in",
+    "password": "student123",
+    "role": "student",
+    "rollNo": "B123002",
+    "createdAt": "2026-08-01T00:00:00.000Z"
+  },
+  {
+    "id": "stu-003",
+    "name": "Priya Sharma",
+    "email": "priya@iiitbh.ac.in",
+    "password": "student123",
+    "role": "student",
+    "rollNo": "B123003",
+    "createdAt": "2026-08-01T00:00:00.000Z"
+  }
+]
