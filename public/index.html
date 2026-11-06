@@ -1,20 +1,234 @@
-<!-- Placeholder — Phase 2 will build the full landing page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IIIT Bhubaneswar Mess Management</title>
-  <style>
-    body { background: #0f0f1a; color: #eaeaea; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-    h1 { font-size: 2rem; }
-    .accent { color: #e94560; }
-  </style>
+  <title>IIIT Bhubaneswar — Mess Management System</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>" />
 </head>
 <body>
-  <div style="text-align:center;">
-    <h1>🍽️ IIIT Bhubaneswar <span class="accent">Mess Management</span></h1>
-    <p>Server is running. Full UI coming in Phase 2.</p>
+
+  <!-- Particle Background -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ─── Navbar ──────────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="logo-icon">🍽️</span>
+      <div class="brand-text">
+        <span class="brand-name">IIIT Bhubaneswar</span>
+        <span class="brand-sub">Mess Management</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#" data-auth="login" class="btn btn-secondary btn-sm">Sign In</a>
+      <a href="#" data-auth="register" class="btn btn-primary btn-sm">Register</a>
+    </div>
+  </nav>
+
+  <!-- ─── Hero Section ────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        System Active
+      </div>
+
+      <h1>
+        Smart <span class="highlight">Mess Management</span><br />
+        for IIIT Bhubaneswar
+      </h1>
+
+      <p class="hero-subtitle">
+        View daily menus, register for meals, share feedback, and stay updated — all in one seamless platform built for students and administrators.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn btn-primary btn-lg" data-auth="login">
+          🚀 Get Started
+        </button>
+        <a href="#features" class="btn btn-secondary btn-lg">
+          ✨ Explore Features
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-value">500+</div>
+          <div class="stat-label">Students</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value">4</div>
+          <div class="stat-label">Meals / Day</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value">7</div>
+          <div class="stat-label">Days a Week</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value">24/7</div>
+          <div class="stat-label">Online Access</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Features Section ────────────────────────────── -->
+  <section class="features-section" id="features">
+    <div class="section-header">
+      <h2>Everything You Need</h2>
+      <p>A complete mess management solution for the campus community</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card animate-in animate-in-delay-1">
+        <div class="feature-icon">📋</div>
+        <h3>Weekly Menu</h3>
+        <p>Browse the full weekly menu with breakfast, lunch, snacks, and dinner. Always know what's being served today.</p>
+      </div>
+
+      <div class="feature-card animate-in animate-in-delay-2">
+        <div class="feature-icon">✅</div>
+        <h3>Meal Registration</h3>
+        <p>Opt-in or skip meals in advance. Helps the mess plan portions better and reduces food waste.</p>
+      </div>
+
+      <div class="feature-card animate-in animate-in-delay-3">
+        <div class="feature-icon">⭐</div>
+        <h3>Rate & Review</h3>
+        <p>Submit ratings and feedback for each meal. Your voice helps improve the food quality every day.</p>
+      </div>
+
+      <div class="feature-card animate-in animate-in-delay-4">
+        <div class="feature-icon">📢</div>
+        <h3>Announcements</h3>
+        <p>Stay updated with mess notices — special menus, timing changes, and festive meals. Never miss an update.</p>
+      </div>
+
+      <div class="feature-card animate-in animate-in-delay-5">
+        <div class="feature-icon">📊</div>
+        <h3>Admin Dashboard</h3>
+        <p>Admins get powerful tools to manage menus, view feedback analytics, and track student registrations.</p>
+      </div>
+
+      <div class="feature-card animate-in animate-in-delay-5">
+        <div class="feature-icon">🔒</div>
+        <h3>Secure Access</h3>
+        <p>Role-based access ensures students see their dashboard, and admins get full management controls.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ──────────────────────────────────────── -->
+  <footer class="footer">
+    <p>© 2026 <span>IIIT Bhubaneswar</span> Mess Management System. Built with ❤️ by Swaraj Sarkar.</p>
+  </footer>
+
+  <!-- ─── Auth Modal ──────────────────────────────────── -->
+  <div class="modal-overlay" id="auth-modal-overlay">
+    <div class="modal">
+      <button class="modal-close">×</button>
+
+      <!-- Login Section -->
+      <div id="login-section">
+        <h2>Welcome Back</h2>
+        <p class="modal-subtitle">Sign in to access your mess dashboard</p>
+
+        <!-- Role Selector -->
+        <div class="role-selector">
+          <div class="role-option selected" data-role="student">
+            <div class="role-icon">🎓</div>
+            <div class="role-label">Student</div>
+          </div>
+          <div class="role-option" data-role="admin">
+            <div class="role-icon">⚙️</div>
+            <div class="role-label">Admin</div>
+          </div>
+        </div>
+
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" class="form-input"
+                   placeholder="yourname@iiitbh.ac.in" required />
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" class="form-input"
+                   placeholder="Enter your password" required />
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" id="login-btn" class="btn btn-primary btn-block btn-lg">
+              Sign In
+            </button>
+          </div>
+
+          <div class="form-switch">
+            Don't have an account?
+            <a href="#" id="switch-to-register">Create one</a>
+          </div>
+        </form>
+      </div>
+
+      <!-- Register Section -->
+      <div id="register-section" style="display: none;">
+        <h2>Create Account</h2>
+        <p class="modal-subtitle">Register as a student to get started</p>
+
+        <form id="register-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-name">Full Name</label>
+              <input type="text" id="reg-name" class="form-input"
+                     placeholder="John Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="reg-roll">Roll Number</label>
+              <input type="text" id="reg-roll" class="form-input"
+                     placeholder="B123XXX" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-email">Email Address</label>
+            <input type="email" id="reg-email" class="form-input"
+                   placeholder="yourname@iiitbh.ac.in" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-password">Password</label>
+              <input type="password" id="reg-password" class="form-input"
+                     placeholder="Min 6 characters" required />
+            </div>
+            <div class="form-group">
+              <label for="reg-confirm-password">Confirm Password</label>
+              <input type="password" id="reg-confirm-password" class="form-input"
+                     placeholder="Confirm password" required />
+            </div>
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" id="register-btn" class="btn btn-primary btn-block btn-lg">
+              Create Account
+            </button>
+          </div>
+
+          <div class="form-switch">
+            Already have an account?
+            <a href="#" id="switch-to-login">Sign in</a>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
+
+  <!-- Scripts -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
 </body>
 </html>
