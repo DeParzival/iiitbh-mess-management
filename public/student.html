@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard — Mess Management</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>" />
+</head>
+<body>
+  <div class="dashboard">
+
+    <!-- ─── Sidebar ───────────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="logo-icon">🍽️</span>
+        <span class="brand-name">IIIT Bhubaneswar</span>
+        <span class="brand-sub">Mess Management</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="active" data-section="overview">
+          <span class="nav-icon">🏠</span> Overview
+        </a>
+        <a href="#" data-section="menu">
+          <span class="nav-icon">📋</span> Weekly Menu
+        </a>
+        <a href="#" data-section="register-meals">
+          <span class="nav-icon">✅</span> Meal Registration
+        </a>
+        <a href="#" data-section="feedback">
+          <span class="nav-icon">⭐</span> Feedback
+        </a>
+        <a href="#" data-section="announcements">
+          <span class="nav-icon">📢</span> Announcements
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar" id="user-avatar">SS</div>
+          <div class="user-info">
+            <div class="user-name" id="user-name">Student</div>
+            <div class="user-role">Student</div>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="logout()" style="margin-top: 0.75rem; width: 100%; justify-content: flex-start; gap: 0.5rem;">
+          🚪 Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+
+    <!-- ─── Main Content ──────────────────────────────── -->
+    <main class="main-content">
+
+      <!-- ═══ Overview Section ════════════════════════ -->
+      <section id="section-overview" class="dashboard-section">
+        <div class="page-header">
+          <div>
+            <h1 id="greeting-text">Good Evening</h1>
+            <div class="header-date" id="today-date"></div>
+          </div>
+        </div>
+
+        <!-- Today's Meal Highlight -->
+        <div class="card animate-in" style="margin-bottom: 1.5rem;">
+          <div class="card-header">
+            <h3>🍛 Today's Menu — <span id="today-day">Monday</span></h3>
+            <span class="badge badge-success">Live</span>
+          </div>
+          <div class="card-body">
+            <div class="meal-tabs" id="today-meal-tabs">
+              <button class="meal-tab active" data-meal="breakfast">☀️ Breakfast</button>
+              <button class="meal-tab" data-meal="lunch">🌤️ Lunch</button>
+              <button class="meal-tab" data-meal="snacks">🍪 Snacks</button>
+              <button class="meal-tab" data-meal="dinner">🌙 Dinner</button>
+            </div>
+            <div id="today-meal-content">
+              <div class="skeleton skeleton-card"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-grid animate-in animate-in-delay-1">
+          <div class="stat-card">
+            <div class="stat-icon">🍽️</div>
+            <div class="stat-value" id="stat-meals-today">-</div>
+            <div class="stat-label">Meals Registered Today</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-value" id="stat-feedbacks">-</div>
+            <div class="stat-label">Feedback Given</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📢</div>
+            <div class="stat-value" id="stat-announcements">-</div>
+            <div class="stat-label">Active Notices</div>
+          </div>
+        </div>
+
+        <!-- Recent Announcements -->
+        <div class="card animate-in animate-in-delay-2" style="margin-top: 1.5rem;">
+          <div class="card-header">
+            <h3>📢 Latest Announcements</h3>
+          </div>
+          <div class="card-body" id="overview-announcements">
+            <div class="skeleton skeleton-text long"></div>
+            <div class="skeleton skeleton-text medium"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Weekly Menu Section ═════════════════════ -->
+      <section id="section-menu" class="dashboard-section" style="display:none;">
+        <div class="page-header">
+          <h1>📋 Weekly Menu</h1>
+        </div>
+
+        <div class="meal-tabs" id="menu-meal-tabs">
+          <button class="meal-tab active" data-meal="breakfast">☀️ Breakfast</button>
+          <button class="meal-tab" data-meal="lunch">🌤️ Lunch</button>
+          <button class="meal-tab" data-meal="snacks">🍪 Snacks</button>
+          <button class="meal-tab" data-meal="dinner">🌙 Dinner</button>
+        </div>
+
+        <div class="menu-grid" id="menu-grid">
+          <!-- Filled by JS -->
+        </div>
+      </section>
+
+      <!-- ═══ Meal Registration Section ═══════════════ -->
+      <section id="section-register-meals" class="dashboard-section" style="display:none;">
+        <div class="page-header">
+          <h1>✅ Meal Registration</h1>
+          <span class="header-date">Toggle meals you want to attend</span>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem;">
+              Register for tomorrow's meals. Toggle ON to opt-in, OFF to skip.
+            </p>
+            <div id="meal-registration-list">
+              <!-- Filled by JS -->
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.5rem;">
+          <div class="card-header">
+            <h3>📜 My Registration History</h3>
+          </div>
+          <div class="card-body">
+            <div id="registration-history">
+              <div class="skeleton skeleton-text long"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Feedback Section ════════════════════════ -->
+      <section id="section-feedback" class="dashboard-section" style="display:none;">
+        <div class="page-header">
+          <h1>⭐ Feedback</h1>
+        </div>
+
+        <!-- Feedback Form -->
+        <div class="card" style="margin-bottom: 1.5rem;">
+          <div class="card-header">
+            <h3>Submit Feedback</h3>
+          </div>
+          <div class="card-body">
+            <form id="feedback-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Meal Type</label>
+                  <select id="fb-meal-type" class="form-select" required>
+                    <option value="">Select meal</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="snacks">Snacks</option>
+                    <option value="dinner">Dinner</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="date" id="fb-date" class="form-input" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Rating</label>
+                <div class="star-rating">
+                  <input type="radio" id="star5" name="rating" value="5" /><label for="star5">★</label>
+                  <input type="radio" id="star4" name="rating" value="4" /><label for="star4">★</label>
+                  <input type="radio" id="star3" name="rating" value="3" /><label for="star3">★</label>
+                  <input type="radio" id="star2" name="rating" value="2" /><label for="star2">★</label>
+                  <input type="radio" id="star1" name="rating" value="1" /><label for="star1">★</label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Your Comments</label>
+                <textarea id="fb-comment" class="form-textarea" placeholder="Share your experience..." required></textarea>
+              </div>
+
+              <button type="submit" id="fb-submit-btn" class="btn btn-primary">
+                Submit Feedback
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Feedback History -->
+        <div class="card">
+          <div class="card-header">
+            <h3>📜 My Feedback History</h3>
+          </div>
+          <div class="card-body" id="feedback-history">
+            <div class="skeleton skeleton-text long"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Announcements Section ═══════════════════ -->
+      <section id="section-announcements" class="dashboard-section" style="display:none;">
+        <div class="page-header">
+          <h1>📢 Announcements</h1>
+        </div>
+
+        <div id="announcements-list">
+          <div class="skeleton skeleton-card"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/student.js"></script>
+</body>
+</html>
