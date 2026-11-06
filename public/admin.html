@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — Mess Management</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
+</head>
+<body>
+  <div class="dashboard">
+
+    <!-- ─── Sidebar ───────────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="logo-icon">⚙️</span>
+        <span class="brand-name">IIIT Bhubaneswar</span>
+        <span class="brand-sub">Admin Panel</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="active" data-section="overview">
+          <span class="nav-icon">📊</span> Dashboard
+        </a>
+        <a href="#" data-section="menu-manage">
+          <span class="nav-icon">📋</span> Manage Menu
+        </a>
+        <a href="#" data-section="students">
+          <span class="nav-icon">🎓</span> Students
+        </a>
+        <a href="#" data-section="feedback">
+          <span class="nav-icon">⭐</span> Feedback
+        </a>
+        <a href="#" data-section="announcements">
+          <span class="nav-icon">📢</span> Announcements
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar" id="user-avatar" style="background: var(--blue-gradient);">MA</div>
+          <div class="user-info">
+            <div class="user-name" id="user-name">Admin</div>
+            <div class="user-role" style="color: var(--success);">Administrator</div>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="logout()" style="margin-top: 0.75rem; width: 100%; justify-content: flex-start; gap: 0.5rem;">
+          🚪 Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+
+    <!-- ─── Main Content ──────────────────────────────── -->
+    <main class="main-content">
+
+      <!-- ═══ Dashboard Overview ══════════════════════ -->
+      <section id="section-overview" class="dashboard-section">
+        <div class="page-header">
+          <div>
+            <h1>📊 Dashboard Overview</h1>
+            <div class="header-date" id="today-date"></div>
+          </div>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="stats-grid animate-in">
+          <div class="stat-card">
+            <div class="stat-icon">🎓</div>
+            <div class="stat-value" id="stat-total-students">-</div>
+            <div class="stat-label">Total Students</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🍽️</div>
+            <div class="stat-value" id="stat-today-regs">-</div>
+            <div class="stat-label">Today's Registrations</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-value" id="stat-avg-rating">-</div>
+            <div class="stat-label">Avg Rating</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💬</div>
+            <div class="stat-value" id="stat-total-feedbacks">-</div>
+            <div class="stat-label">Total Feedbacks</div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;" class="animate-in animate-in-delay-1" id="charts-row">
+          <div class="card">
+            <div class="card-header">
+              <h3>📊 Meal Registration Breakdown</h3>
+            </div>
+            <div class="card-body">
+              <canvas id="chart-meals" width="400" height="250"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>⭐ Rating Distribution</h3>
+            </div>
+            <div class="card-body">
+              <canvas id="chart-ratings" width="400" height="250"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Feedback -->
+        <div class="card animate-in animate-in-delay-2" style="margin-top: 1.5rem;">
+          <div class="card-header">
+            <h3>💬 Recent Feedback</h3>
+          </div>
+          <div class="card-body" id="admin-recent-feedback">
+            <div class="skeleton skeleton-text long"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Manage Menu ═════════════════════════════ -->
+      <section id="section-menu-manage" class="dashboard-section" style="display:none;">
+        <div class="page-header">
+          <h1>📋 Manage Menu</h1>
+        </div>
+
+        <!-- Day Selector -->
+        <div class="meal-tabs" id="admin-day-tabs" style="margin-bottom: 1.5rem;">
+          <button class="meal-tab active" data-day="Monday">Mon</button>
+          <button class="meal-tab" data-day="Tuesday">Tue</button>
+          <button class="meal-tab" data-day="Wednesday">Wed</button>
+          <button class="meal-tab" data-day="Thursday">Thu</button>
+          <button class="meal-tab" data-day="Friday">Fri</button>
+          <button class="meal-tab" data-day="Saturday">Sat</button>
+          <button class="meal-tab" data-day="Sunday">Sun</button>
+        </div>
+
+        <!-- Menu Editor -->
+        <div id="menu-editor">
+          <!-- Filled by JS -->
+        </div>
+      </section>
+
+      <!-- ═══ Students ════════════════════════════════ -->
+      <section id="section-students" class="dashboard-section" style="display:none;">
+        <div class="page-header">
+          <h1>🎓 Registered Students</h1>
+        </div>
+
+        <div class="card">
+          <div class="card-body" id="students-table">
+            <div class="skeleton skeleton-card"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Feedback (Admin View) ═══════════════════ -->
+      <section id="section-feedback" class="dashboard-section" style="display:none;">
+        <div class="page-header">
+          <h1>⭐ All Feedback</h1>
+        </div>
+
+        <!-- Filter -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+          <select id="fb-filter-meal" class="form-select" style="width: auto; min-width: 150px;">
+            <option value="">All Meals</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="snacks">Snacks</option>
+            <option value="dinner">Dinner</option>
+          </select>
+          <select id="fb-filter-rating" class="form-select" style="width: auto; min-width: 150px;">
+            <option value="">All Ratings</option>
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="2">2 Stars</option>
+            <option value="1">1 Star</option>
+          </select>
+        </div>
+
+        <div id="admin-feedback-list">
+          <div class="skeleton skeleton-card"></div>
+        </div>
+      </section>
+
+      <!-- ═══ Announcements (Admin) ═══════════════════ -->
+      <section id="section-announcements" class="dashboard-section" style="display:none;">
+        <div class="page-header">
+          <h1>📢 Announcements</h1>
+        </div>
+
+        <!-- Create New -->
+        <div class="card" style="margin-bottom: 1.5rem;">
+          <div class="card-header">
+            <h3>Create New Announcement</h3>
+          </div>
+          <div class="card-body">
+            <form id="announcement-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Title</label>
+                  <input type="text" id="ann-title" class="form-input" placeholder="Announcement title" required />
+                </div>
+                <div class="form-group">
+                  <label>Priority</label>
+                  <select id="ann-priority" class="form-select">
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                    <option value="low">Low</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Message</label>
+                <textarea id="ann-message" class="form-textarea" placeholder="Write your announcement..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" id="ann-submit-btn">
+                📢 Publish Announcement
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Existing Announcements -->
+        <div id="admin-announcements-list">
+          <div class="skeleton skeleton-card"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
