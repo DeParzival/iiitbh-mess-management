@@ -4,7 +4,7 @@
   "description": "IIIT Bhubaneswar Mess Management System",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node -e \"const fs=require('fs'),p=require('path');const s=p.join(__dirname,'src','data'),d=p.join(__dirname,'dist','data');fs.mkdirSync(d,{recursive:true});fs.readdirSync(s).forEach(f=>fs.copyFileSync(p.join(s,f),p.join(d,f)))\"",
     "start": "node dist/server.js",
     "dev": "ts-node src/server.ts"
   },

@@ -43,14 +43,16 @@ app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
-// ─── Start Server ───────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`
+// ─── Start Server (only when not on Vercel) ─────────────────
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`
   ╔══════════════════════════════════════════════════╗
   ║   🍽️  IIIT Bhubaneswar Mess Management System   ║
   ║   Server running on http://localhost:${PORT}        ║
   ╚══════════════════════════════════════════════════╝
-  `);
-});
+    `);
+  });
+}
 
 export default app;
