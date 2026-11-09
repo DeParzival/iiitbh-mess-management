@@ -193,13 +193,6 @@ IWT/
 
 ---
 
-## 👤 Author
-
-**Swaraj Sarkar**
-IIIT Bhubaneswar
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License.
