@@ -6,6 +6,11 @@ A full-stack web application for managing the mess/cafeteria at IIIT Bhubaneswar
 ![TypeScript](https://img.shields.io/badge/Backend-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Express](https://img.shields.io/badge/Server-Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+### 🌐 Live Demo
+
+**[https://iiitbh-mess-management.vercel.app](https://iiitbh-mess-management.vercel.app)**
 
 ---
 
@@ -70,6 +75,32 @@ This uses `ts-node` to run TypeScript directly without building.
 
 ---
 
+## ☁️ Deployment (Vercel)
+
+This project is deployed on **Vercel** using serverless functions for the Express backend and static file hosting for the frontend.
+
+### How it works
+- **Frontend** (`public/`) — served as static files by Vercel's CDN
+- **Backend API** (`api/index.js`) — runs as a Vercel serverless function wrapping the Express app
+- **Data storage** — seed data from `src/data/` is copied to `/tmp` at runtime for read/write access
+
+### Deploy your own
+
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Login to Vercel
+vercel login
+
+# Deploy to production
+vercel --yes --prod
+```
+
+> **Note:** Since Vercel serverless functions have an ephemeral filesystem, data written during a session (new users, feedback, meal registrations) persists while the function instance is warm but resets to seed data on cold starts. This is sufficient for demo/lab purposes.
+
+---
+
 ## 🔐 Default Login Credentials
 
 | Role    | Email                  | Password    |
@@ -115,6 +146,9 @@ IWT/
 │       ├── feedback.json
 │       ├── meals.json
 │       └── announcements.json
+├── api/
+│   └── index.js               # Vercel serverless function entry point
+├── vercel.json                # Vercel deployment configuration
 ├── package.json
 ├── tsconfig.json
 └── .gitignore
@@ -131,6 +165,7 @@ IWT/
 | Storage    | JSON file-based (no external DB)     |
 | Auth       | Bearer token (in-memory sessions)    |
 | Styling    | Custom CSS with CSS Variables        |
+| Deployment | Vercel (Serverless Functions)        |
 
 ---
 
