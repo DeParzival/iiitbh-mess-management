@@ -11,31 +11,43 @@ interface User {
   createdAt: string;
 }
 
-// Simple in-memory session store: token -> userId
-const sessions: Map<string, string> = new Map();
+/**
+ * Token format: base64(userId).randomString
+ * This makes tokens self-contained — no server-side session storage needed.
+ * Works perfectly with Vercel's stateless serverless functions.
+ */
 
-/** Generate a simple random token */
-export function generateToken(): string {
-  return Math.random().toString(36).substring(2) + Date.now().toString(36);
+/** Generate a self-contained token that encodes the userId */
+export function generateToken(userId: string): string {
+  const encoded = Buffer.from(userId).toString('base64');
+  const random = Math.random().toString(36).substring(2) + Date.now().toString(36);
+  return `${encoded}.${random}`;
 }
 
-/** Store a session */
-export function createSession(token: string, userId: string): void {
-  sessions.set(token, userId);
-}
-
-/** Remove a session */
-export function removeSession(token: string): void {
-  sessions.delete(token);
-}
-
-/** Get user ID from token */
+/** Extract user ID from a self-contained token */
 export function getUserIdFromToken(token: string): string | undefined {
-  return sessions.get(token);
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 2) return undefined;
+    const userId = Buffer.from(parts[0], 'base64').toString('utf-8');
+    return userId || undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/** createSession / removeSession kept as no-ops for API compatibility */
+export function createSession(_token: string, _userId: string): void {
+  // No-op — tokens are self-contained
+}
+
+export function removeSession(_token: string): void {
+  // No-op — stateless auth
 }
 
 /**
  * Auth middleware — checks for Authorization header with Bearer token.
+ * Decodes the userId from the token itself (stateless).
  * Attaches `req.user` if valid.
  */
 export function authMiddleware(req: Request, res: Response, next: NextFunction): void {

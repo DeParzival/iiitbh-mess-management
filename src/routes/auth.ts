@@ -42,7 +42,7 @@ router.post('/login', (req: Request, res: Response): void => {
     return;
   }
 
-  const token = generateToken();
+  const token = generateToken(user.id);
   createSession(token, user.id);
 
   res.json({
@@ -98,7 +98,7 @@ router.post('/register', (req: Request, res: Response): void => {
   users.push(newUser);
   usersStore.write(users);
 
-  const token = generateToken();
+  const token = generateToken(newUser.id);
   createSession(token, newUser.id);
 
   res.status(201).json({
